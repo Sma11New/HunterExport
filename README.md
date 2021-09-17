@@ -27,6 +27,12 @@
 
 ### 🚩使用
 
+安装环境
+```
+pip install -r requirements.txt
+```
+
+运行
 ```
 Usage: python3 HunterExport.py
     Command> app="***"      (单次查询)
