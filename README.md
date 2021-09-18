@@ -11,8 +11,9 @@
 1.  修复全球鹰加入请求编码后第一版无法使用问题
 2.  支持文件批量查询
 3.  加入日志系统
-4.  增加配置文件项，解决请求出错问题
-5.  修复bug，优化程序，完善功能
+4.  添加查询语法说明，输入?或help
+5.  增加配置文件项，解决请求出错问题
+6.  修复bug，优化程序，完善功能
 
 ### 🪓配置文件
 
@@ -37,6 +38,7 @@ pip install -r requirements.txt
 Usage: python3 HunterExport.py
     Command> app="***"      (单次查询)
     Command> file filePath  (批量查询)
+    Command> help           (查看语法)
 ```
 
 单个查询  `app="***"`  （当前timeSleep为0，会出现请求频率太高）：
