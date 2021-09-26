@@ -155,6 +155,7 @@ def searchData(mail, key, command, countMax, searchMonth, timeSleep, isWeb):
             newPrint(flag="INFO", massage=f"Exporting: {exportTotal}条   ExportMax: {countMax}条   ExportTime: {searchMonth}个月")
             # 按页请求
             for page in range(1, pageEnd + 1):
+                time.sleep(timeSleep)
                 url = f'https://geagle.qianxin-inc.cn/openApi/search?username={mail}&api-key={key}&search={commandBase64Encode}&start_time={startTime}&end_time={endTime}&page={page}&page_size={pageSize}&is_web={isWeb}'
                 r = requests.get(url, verify=False)
                 if r.json()["code"] == 200:
@@ -168,7 +169,6 @@ def searchData(mail, key, command, countMax, searchMonth, timeSleep, isWeb):
                         resultList.append(result)
                 else:
                     newPrint(flag="ERROR", massage=f"第{page}页 {r.json()}", start="\n", flush=True)
-                time.sleep(timeSleep)
             output(command, nameList, resultList)
     else:
         newPrint(flag="ERROR", massage=rep.json())
@@ -179,6 +179,7 @@ def batchSearchData(mail, key, commandList, countMax, searchMonth, timeSleep, is
     for command in commandList:
         print(f"\033[32m[>] 当前总进度: {count}/{len(commandList)} \033[0m")
         try:
+            time.sleep(timeSleep)
             searchData(mail, key, command, countMax, searchMonth, timeSleep, isWeb)
         except:
             newPrint(flag="ERROR", massage="Export Error.")
@@ -188,7 +189,7 @@ def batchSearchData(mail, key, commandList, countMax, searchMonth, timeSleep, is
 # 解析输入命令
 def parseCommand(mail, key, command, countMax, searchMonth, timeSleep, isWeb):
     commandList = []
-    if command =="hlep" or command =="?":
+    if command =="help" or command =="?":
         printSearchDocument()
     elif command.split()[0] == "file":
         commandFile = command.split()[1]
